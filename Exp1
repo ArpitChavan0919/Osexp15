@@ -1,0 +1,40 @@
+cd desktop
+mkdir folder_name
+pwd
+ls -l
+touch new.txt
+cat new.txt
+sudo chmod root new.txt
+->[sudo] password for NAME
+-> ls -l
+sudo chgrp root new.txt
+->ls -l
+sudo chmod 744 new.txt
+-> ls -l
+
+//program to Illustrate open and close system call
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int num;
+    FILE *fptr;
+
+    fptr = fopen("num.txt", "w"); // Open file for writing
+
+    if (fptr == NULL) {
+        printf("Error!");
+        exit(1); // Exit if file couldn't be opened
+    }
+
+    printf("Enter num: ");
+    scanf("%d", &num);
+
+    // You can optionally write the number to the file here
+    fprintf(fptr, "%d", num);
+
+    fclose(fptr); // Close the file
+    return 0;
+}
+
