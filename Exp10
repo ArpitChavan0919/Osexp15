@@ -1,0 +1,43 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+int main()
+{
+    int RQ[100], i, n, TotalHeadMovement = 0, initial, count = 0, visited[100] = {0};
+
+    printf("Enter the number of Requests:\n");
+    scanf("%d", &n);
+
+    printf("Enter the Requests sequence:\n");
+    for(i = 0; i < n; i++)
+        scanf("%d", &RQ[i]);
+
+    printf("Enter initial head position:\n");
+    scanf("%d", &initial);
+
+    // SSTF Logic
+    while(count != n)
+    {
+        int min = 1e9, d, index = -1;
+        for(i = 0; i < n; i++)
+        {
+            if(!visited[i])
+            {
+                d = abs(RQ[i] - initial);
+                if(min > d)
+                {
+                    min = d;
+                    index = i;
+                }
+            }
+        }
+
+        visited[index] = 1;
+        TotalHeadMovement += min;
+        initial = RQ[index];
+        count++;
+    }
+
+    printf("Total head movement is %d\n", TotalHeadMovement);
+    return 0;
+}
