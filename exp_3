@@ -1,20 +1,17 @@
-#include<stdio.h>
-#include<dirent.h>
-#include<stdlib.h>
-int main()
-{
-char dirname[10];
-DIR*p;
-struct dirent *d;
-printf("Enter directory name\n");
-scanf("%s",dirname);
-p=opendir(dirname);
-if(p==NULL)
-{
-perror("Cannot find directory1");
-exit(-1);
-}
-while(d=readdir(p))
-printf("%s\n",d->d_name);
-return 0;
+#include <stdio.h>
+#include <dirent.h>
+
+int main() {
+    DIR *d;
+    struct dirent *dir;
+    d = opendir(".");  // Open current directory
+    if (d) {
+        while ((dir = readdir(d)) != NULL) {
+            printf("%s\n", dir->d_name);  // Print file/folder name
+        }
+        closedir(d);
+    } else {
+        printf("Could not open directory.\n");
+    }
+    return 0;
 }
