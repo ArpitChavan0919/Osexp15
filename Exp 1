@@ -1,0 +1,16 @@
+cd desktop
+cat new.txt
+sort new.txt
+echo "PID $$"
+grep "abc" file.txt --------(search in text file)
+awk '{print $1 $3}' new.txt -------(display column)
+echo "Hello world" > new.txt -------(overwrite)
+gedit new.txt & --------(open a text file)
+kill $(pgrep gedit) -------(close a text file)
+rm new.txt -----------(delete file)
+
+//save data in table format
+example-
+g abc 07
+c def 04
+d ghi 05
