@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char *argv[]) {
+    FILE *src, *dest;
+    char ch;
+
+    // Check for correct usage
+    if (argc != 3) {
+        printf("Usage: %s <source_file> <destination_file>\n", argv[0]);
+        return 1;
+    }
+
+    // Open source file in read mode
+    src = fopen(argv[1], "r");
+    if (src == NULL) {
+        perror("Error opening source file");
+        return 1;
+    }
+
+    // Open destination file in write mode
+    dest = fopen(argv[2], "w");
+    if (dest == NULL) {
+        perror("Error opening destination file");
+        fclose(src);
+        return 1;
+    }
+
+    // Copy character by character
+    while ((ch = fgetc(src)) != EOF) {
+        fputc(ch, dest);
+    }
+
+    printf("File copied successfully from '%s' to '%s'.\n", argv[1], argv[2]);
+
+    // Close files
+    fclose(src);
+    fclose(dest);
+
+    return 0;
+}
+
+o/p-
+  gcc simple_cp.c -o simple_cp
+./simple_cp source.txt dest.txt
